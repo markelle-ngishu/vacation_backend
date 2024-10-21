@@ -1,6 +1,10 @@
-package edu.wgu.d288_backend.config;
+package com.example.demo.config;
 
-import edu.wgu.d288_backend.entities.*;
+import com.example.demo.entities.Country;
+import com.example.demo.entities.Customer;
+import com.example.demo.entities.Division;
+import com.example.demo.entities.Excursion;
+import com.example.demo.entities.Vacation;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
