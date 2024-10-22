@@ -50,9 +50,9 @@ public class Cart {
     private Customer customer;
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<CartItem> carItems = new HashSet<>();
+    private Set<CartItem> cartItems = new HashSet<>();
 
     public void add(CartItem cartItem) {
-        this.cartItem.add(cartItem);
+        this.cartItems.add(cartItem);
     }
 }

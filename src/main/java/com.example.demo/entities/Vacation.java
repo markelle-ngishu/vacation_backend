@@ -15,8 +15,7 @@ import java.util.Set;
 @Table(name = "vacations")
 @Getter
 @Setter
-//@AllArgsConstructor
-//@NoArgsConstructor
+
 public class Vacation {
 
     @Id
