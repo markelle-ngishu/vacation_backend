@@ -9,13 +9,13 @@ import com.example.demo.entities.CartItem;
 import com.example.demo.entities.Customer;
 import com.example.demo.entities.StatusType;
 import jakarta.transaction.Transactional;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
+@AllArgsConstructor
 @Service
 public class CheckoutServiceImpl implements CheckoutService {
 
@@ -24,13 +24,6 @@ public class CheckoutServiceImpl implements CheckoutService {
     private ExcursionRepository excursionRepository;
     private CartItemRepository cartItemRepository;
 
-    public CheckoutServiceImpl(CustomerRepository customerRepository, CartRepository cartRepository,
-                               ExcursionRepository excursionRepository, CartItemRepository cartItemRepository) {
-        this.customerRepository = customerRepository;
-        this.cartRepository = cartRepository;
-        this.excursionRepository = excursionRepository;
-        this.cartItemRepository = cartItemRepository;
-    }
     @Override
     @Transactional
     public PurchaseResponse placeOrder(Purchase purchase) {
@@ -52,9 +45,6 @@ public class CheckoutServiceImpl implements CheckoutService {
 
             Customer customer = purchase.getCustomer();
             cart.setCustomer(customer);
-
-            // Populate customer with cart
-            //customer.add(cart);
 
             // Save to database
             customerRepository.save(customer);

@@ -6,6 +6,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -31,9 +32,9 @@ public class CartItem {
             joinColumns = @JoinColumn(name = "cart_item_id"),
             inverseJoinColumns = @JoinColumn(name = "excursion_id")
     )
-    private Set<Excursion> excursions;
+    private Set<Excursion> excursions = new HashSet<>();
 
-    @ManyToOne
+    @ManyToOne (fetch = FetchType.LAZY)
     @JoinColumn(name = "cart_id")
     private Cart cart;
 
@@ -44,5 +45,10 @@ public class CartItem {
     @UpdateTimestamp
     @Column(name = "last_update")
     private Date last_update;
+
+    public void addExcursion(Excursion excursion) {
+        this.excursions.add(excursion);
+        excursion.getCartItems().add(this);
+    }
 
 }

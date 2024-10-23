@@ -30,11 +30,9 @@ public class Vacation {
     private String description;
 
     @Column(name = "travel_fare_price")
-    @JsonProperty("travel_price")
     private BigDecimal travel_price;
 
     @Column(name = "image_url")
-    @JsonProperty("image_URL")
     private String image_URL;
 
     @CreationTimestamp
@@ -45,6 +43,6 @@ public class Vacation {
     @Column(name = "last_update")
     private Date lastUpdate;
 
-    @OneToMany(mappedBy = "vacation", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "vacation")
     private Set<Excursion> excursions;
 }

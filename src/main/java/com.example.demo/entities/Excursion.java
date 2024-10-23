@@ -9,14 +9,13 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "excursions")
 @Getter
 @Setter
-//@NoArgsConstructor
-//@AllArgsConstructor
 public class Excursion {
 
     @Id
@@ -25,14 +24,12 @@ public class Excursion {
     private Long id;
 
     @Column(name = "excursion_title")
-    @JsonProperty("excursion_title")
     private String excursion_title;
 
     @Column(name = "excursion_price")
     private BigDecimal excursion_price;
 
     @Column(name = "image_url")
-    @JsonProperty("image_URL")
     private String image_URL;
 
     @CreationTimestamp
@@ -47,6 +44,6 @@ public class Excursion {
     @JoinColumn(name = "vacation_id")
     private Vacation vacation;
 
-    @ManyToMany(mappedBy = "excursions")
-    private Set<CartItem> cartItems;
+    @ManyToMany(mappedBy = "excursions", cascade = CascadeType.ALL)
+    private Set<CartItem> cartItems = new HashSet<>();
 }

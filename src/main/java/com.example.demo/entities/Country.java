@@ -29,6 +29,6 @@ public class Country {
     @Column(name = "last_update")
     private Date last_update;
 
-    @OneToMany(mappedBy = "country", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Division> division;
+    @OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
+    private Set<Division> divisions;
 }
