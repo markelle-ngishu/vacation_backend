@@ -8,10 +8,11 @@ import com.example.demo.entities.Cart;
 import com.example.demo.entities.CartItem;
 import com.example.demo.entities.Customer;
 import com.example.demo.entities.StatusType;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Date;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -42,12 +43,12 @@ public class CheckoutServiceImpl implements CheckoutService {
             String orderTrackingNumber = generateOrderTrackingNumber();
             cart.setOrderTrackingNumber(orderTrackingNumber);
 
-            // add items to cart
+            // Populate cart with cart items
             Set<CartItem> cartItems = purchase.getCartItems();
             cartItems.forEach(item -> item.setCart(cart));
 
             // Set the cart items and customers to the cart
-            cartItems.forEach(item -> cart.add(item));
+            cart.setCartItems(cartItems);
 
             Customer customer = purchase.getCustomer();
             cart.setCustomer(customer);

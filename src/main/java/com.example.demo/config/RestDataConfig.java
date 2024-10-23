@@ -27,7 +27,7 @@ public class RestDataConfig implements RepositoryRestConfigurer {
      * This method exposes standard rest api end points for the following classes:
      * Country
      * Customer
-     * com.example.demo.entities.Division
+     * Division
      * Excursion
      * Vacation
      * <p>
